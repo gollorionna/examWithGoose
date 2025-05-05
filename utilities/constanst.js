@@ -14,7 +14,7 @@ const meatIngredients = {
 
 const nonMeatIngredients = {
     tomato: 2,
-    chesse : 3,
+    cheese : 3,
     truffle: 8,
     mushrooms: 4
 }
