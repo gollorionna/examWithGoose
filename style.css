@@ -86,4 +86,24 @@
 .footer{
     height: 40%;
     background-color: #fbd669;
+    position: relative;
 }
+
+#footerWrapper{
+    position: relative;
+    width: 240px;
+    height: 660px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    justify-items: auto;
+}
+
+.column{
+    padding: 40px 20px;
+    width: 240px;
+    height: 660px;
+}
+
+
