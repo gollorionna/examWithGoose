@@ -2,7 +2,7 @@ const basics = {
     neaplesDough: 3,
     romeDought: 4,
     sizilianDough: 6,
-    sourDough: 7
+    classicDough: 7
 }
 
 const meatIngredients = {

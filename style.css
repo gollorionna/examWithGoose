@@ -86,4 +86,33 @@
 .footer{
     height: 40%;
     background-color: #fbd669;
+    position: relative;
 }
+
+#footerWrapper{
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+}
+
+.column{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    font-size: 19px;
+    font-family: sans-serif;
+    line-height: 30px;
+    list-style-type: none;
+    
+}
+#column_name{
+    font-size: larger;
+    font-weight: bold;
+    line-height: 50px;
+}
+
+
