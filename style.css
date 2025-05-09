@@ -85,15 +85,43 @@
 }
 
 .pizzaImgBlock {
-    display: flex;
+    display: inline-flex;
     justify-content: center;
     align-items: center;
+    position: relative;
+}
+
+.overlay{
+    position: absolute;
+    width: 50%; 
+    height: 50%; 
+    background-color: #fae49b;
+}
+
+.box1{
+    top: 0;
+    left: 0;
+}
+
+.box2{
+    top: 0;
+    right: 0;
+}
+
+.box3{
+    bottom: 0;
+    left: 0;
+}
+
+.box4{
+    bottom: 0;
+    right: 0;
 }
 
 .pizzaImg {
     width: 250px;
     height: 250px;
-    object-fit: contain;
+    display: block;
 }
 
 .buyBlock {
