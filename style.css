@@ -99,23 +99,27 @@
 }
 
 .box1{
-    top: 0;
+    bottom: 0;
     left: 0;
 }
 
 .box2{
     top: 0;
-    right: 0;
+    left: 0;
 }
 
 .box3{
-    bottom: 0;
-    left: 0;
+    top: 0;
+    right: 0;
 }
 
 .box4{
     bottom: 0;
     right: 0;
+}
+
+.activePizza{
+    background-color: inherit;
 }
 
 .pizzaImg {
@@ -136,7 +140,13 @@
     border-radius: 14px;
     color: grey;
     width: auto;
-    margin-top: 20px; /
+    margin-top: 20px; 
+    cursor: pointer;
+}
+
+.buy{
+    background-color: #b69c3e;
+    /* cursor: pointer; */
 }
 
 .footer{
