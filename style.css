@@ -11,6 +11,7 @@
     position: absolute;
     width: 100%;
     height: 100%;
+    font-family: sans-serif;
 }
 
 .mainContent{
@@ -35,6 +36,7 @@
     height: 15%;
     font-size: 18px;
     font-weight: bold;
+    font-family: sans-serif;
 }
 
 .ingredientBlock{
@@ -138,7 +140,7 @@
     list-style-type: none;
     object-fit: contain;
 }
-.column_1{
+#column_1{
     margin-left: 200px;
 }
 #column_name{
@@ -147,7 +149,20 @@
     line-height: 50px;
 }
 
+.new_ingredient {
+    padding: 3px;
+}
+
+.btn_remove {
+    background: #ff4444;
+    color: white;
+    border: none;
+    padding: 2px 5px;
+    cursor: pointer;
+}
+
 .ing {
     cursor: grab;
+    padding: 3px;
 }
 
