@@ -1,3 +1,119 @@
+// prepod fix
+function changeMainCount ( ) {
+    return countBasicsSauce + Math.round(countMeatIngredients) + Math.round(countNonMeatIngredients);
+}
+
+function countPizzaImgAmount(countMain) {
+    switch (countMain) {
+        case 1:
+        test1.classList.add('activePizza'); 
+        break;
+    
+        case 2:
+        test1.classList.add('activePizza'); 
+        test2.classList.add('activePizza'); 
+        break;
+    
+        case 3:
+        test1.classList.add('activePizza'); 
+        test2.classList.add('activePizza'); 
+        test3.classList.add('activePizza'); 
+        break;
+    
+        case 4:
+        test1.classList.add('activePizza'); 
+        test2.classList.add('activePizza');
+        test3.classList.add('activePizza');
+        test4.classList.add('activePizza');
+        pizzaBuyClick()
+        break;
+    }
+}
+
+function handleBasicIngredient(event) {
+    if (!event.target.classList.contains('ing')) return;
+    
+    const selectedBasics = document.querySelectorAll('.choseBasics');
+    if (selectedBasics.length >= LIMITS.basics) {
+        throw Error(`Нельзя выбирать больше ${LIMITS.basics} основы`);
+    }
+
+    // Добавляем новое выделение
+    event.target.classList.add('choseBasics');
+    event.target.style.color = 'red';
+    countBasicsSauce++;
+
+    
+    addToOrder(event.target);
+    countPizzaImgAmount(changeMainCount());
+}
+
+
+function handleMeatIngredient(event) {
+    if (!event.target.classList.contains('ing')) return;
+    
+    const selectedMeat = document.querySelectorAll('.choseMeat');
+    if (selectedMeat.length >= LIMITS.meats) {
+        throw Error(`Нельзя выбирать больше ${LIMITS.meats} основы`);
+    }
+
+    // Добавляем новое выделение
+    event.target.classList.add('choseMeat');
+    event.target.style.color = 'red';
+    addToOrder(event.target);
+    countMeatIngredients+=0.6
+
+    
+}
+
+function handleNonMeatIngredient(event) {
+    if (!event.target.classList.contains('ing')) return;
+    
+    const selectedNonMeats = document.querySelectorAll('.choseNonMeat');
+    if (selectedNonMeats.length >= LIMITS.nonMeats) {
+        throw Error(`Нельзя выбирать больше ${LIMITS.nonMeats} основы`);
+    }
+
+    // Добавляем новое выделение
+    event.target.classList.add('choseNonMeat');
+    event.target.style.color = 'red';
+    addToOrder(event.target);
+    countNonMeatIngredients+=0.6;
+
+
+    countPizzaImgAmount(changeMainCount());
+}
+
+function handleSauceIngredient(event) {
+    if (!event.target.classList.contains('ing')) return;
+    
+    const selectedSauce = document.querySelectorAll('.choseSauce');
+    if (selectedSauce.length >= LIMITS.sauces) {
+        throw Error(`Нельзя выбирать больше ${LIMITS.sauces} соуса`);
+    }
+    
+    // Добавляем новое выделение
+    event.target.classList.add('choseSauce');
+    event.target.style.color = 'red';
+    addToOrder(event.target);
+    countBasicsSauce++;
+
+
+    countPizzaImgAmount(changeMainCount());
+}
+
+
+// --------------------------------------------------   END
+
+
+
+// --------------------------------------------  OUR CODE
+
+
+
+
+
+
 
 // ---Логика отображения пиццы---
 const ingredients = document.getElementsByClassName('ing');
@@ -160,8 +276,11 @@ function removeFromOrder(event){
 
     const allIngredients = document.querySelectorAll('.ing');
     allIngredients.forEach(ing => {
-        if (ing.textContent === name_order) {
+        if (ing.textContent === name_order & event.target.category === pizzaComposition.key) {
             ing.classList.remove('choseBasics', 'choseMeat', 'choseNonMeat', 'choseSauce');
+            pizzaComposition.key = null;
+            console.log(pizzaComposition);
+            
             ing.style.color = 'black';
         }
     });
@@ -231,6 +350,8 @@ function selectProduct(categoryName, productName) {
         case 'dough':
         case 'sauce':
             pizzaComposition[categoryName] = { name: productName, price: price };
+            console.log(pizzaComposition);
+            
         break;
 
         case 'meat':
