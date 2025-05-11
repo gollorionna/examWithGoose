@@ -19,7 +19,7 @@
                             Основа
                         </div>
                         <div class="meatIngredients">
-                            Мясные ингредиенты 
+                            Мясные  
                         </div>
                         <div class="nonMeatIngredients">
                             Не мясные ингридиенты
@@ -29,16 +29,22 @@
                         </div> -->
                     </div>
                     <div class="price">
-                        Цена: 0$
+                        Цена:
+                        <span class="totalPrice"></span>
+                        $
                     </div>
                 </div>
             </div>
             <div class="rightMain">
                 <div class="rightMainWrapper">
                     <div class="pizzaImgBlock">
+                        <div class="overlay box1"></div>
+                        <div class="overlay box2"></div>
+                        <div class="overlay box3"></div>
+                        <div class="overlay box4"></div>
                         <img class="pizzaImg" src="./img/pizza.png" alt="pizzaImg">
                     </div>
-                    <span class="buyBlock">
+                    <span class="buyBlock" id="buyBlock">
                         Заказать
                     </span>
                 </div>
@@ -77,7 +83,9 @@
             </div>
         </div>
     </div>
-
+    <div class="endMessage">
+        <div class="endMessageWrapper"></div>
+    </div>
     <script src="script.js"></script>>
 </body>
 </html>
