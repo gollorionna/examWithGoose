@@ -1,8 +1,5 @@
 
 // ---Логика отображения пиццы---
-let countBasicsSauce = 1;
-let countMeatIngredients = 0;
-let countNonMeatIngredients = 0;
 const ingredients = document.getElementsByClassName('ing');
 const footerWrapper = document.getElementById('footerWrapper');
 const column_1 = document.getElementById('column_1');
@@ -10,6 +7,34 @@ const column_2 = document.getElementById('column_2');
 const column_3 = document.getElementById('column_3');
 const column_4 = document.getElementById('column_4');
 const ingWrapper = document.getElementById('ingredientBlock');
+let countBasicsSauce = 0;
+let countMeatIngredients = 0;
+let countNonMeatIngredients = 0;
+let countMain = countBasicsSauce + Math.round(countMeatIngredients) + Math.round(countNonMeatIngredients);
+switch (countMain) {
+    case 1:
+    test1.classList.add('activePizza'); 
+    break;
+
+    case 2:
+    test1.classList.add('activePizza'); 
+    test2.classList.add('activePizza'); 
+    break;
+
+    case 3:
+    test1.classList.add('activePizza'); 
+    test2.classList.add('activePizza'); 
+    test3.classList.add('activePizza'); 
+    break;
+
+    case 4:
+    test1.classList.add('activePizza'); 
+    test2.classList.add('activePizza'); 
+    test3.classList.add('activePizza'); 
+    test4.classList.add('activePizza');
+    pizzaBuyClick()
+    break;
+}
 
 const LIMITS = {
     basics: 1,
@@ -36,7 +61,7 @@ function handleBasicIngredient(event) {
     event.target.classList.add('choseBasics');
     event.target.style.color = 'red';
     countBasicsSauce++
-    console.log(countBasicsSauce);
+    console.log(countMain);
     
     addToOrder(event.target);
 
@@ -55,6 +80,7 @@ function handleMeatIngredient(event) {
     event.target.style.color = 'red';
     addToOrder(event.target);
     countMeatIngredients+0.6
+    console.log(countMain);
 }
 
 function handleNonMeatIngredient(event) {
@@ -70,7 +96,7 @@ function handleNonMeatIngredient(event) {
     event.target.style.color = 'red';
     addToOrder(event.target);
     countNonMeatIngredients+0.6
-    
+    console.log(countMain);
 }
 
 function handleSauceIngredient(event) {
@@ -86,6 +112,7 @@ function handleSauceIngredient(event) {
     event.target.style.color = 'red';
     addToOrder(event.target);
     countBasicsSauce++
+    console.log(countMain);
 }
 
 function addToOrder(ingredientElement) {
@@ -151,32 +178,7 @@ const test2 = document.getElementsByClassName('box2')[0];
 const test3 = document.getElementsByClassName('box3')[0];
 const test4 = document.getElementsByClassName('box4')[0];
 
-let countMain = countBasicsSauce + Math.round(countMeatIngredients) + Math.round(countNonMeatIngredients);
 
-switch (countMain) {
-    case 1:
-    test1.classList.add('activePizza'); 
-    break;
-
-    case 2:
-    test1.classList.add('activePizza'); 
-    test2.classList.add('activePizza'); 
-    break;
-
-    case 3:
-    test1.classList.add('activePizza'); 
-    test2.classList.add('activePizza'); 
-    test3.classList.add('activePizza'); 
-    break;
-
-    case 4:
-    test1.classList.add('activePizza'); 
-    test2.classList.add('activePizza'); 
-    test3.classList.add('activePizza'); 
-    test4.classList.add('activePizza');
-    pizzaBuyClick()
-    break;
-}
 // ---Установка обработчика при отображении 4 кусков---
 function pizzaBuyClick () {
     const buyButton = document.querySelector('.buyBlock');
