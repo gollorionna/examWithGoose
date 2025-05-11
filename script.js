@@ -1,3 +1,8 @@
+
+// ---Логика отображения пиццы---
+let countBasicsSauce = 1;
+let countMeatIngredients = 0;
+let countNonMeatIngredients = 0;
 const ingredients = document.getElementsByClassName('ing');
 const footerWrapper = document.getElementById('footerWrapper');
 const column_1 = document.getElementById('column_1');
@@ -30,7 +35,11 @@ function handleBasicIngredient(event) {
     // Добавляем новое выделение
     event.target.classList.add('choseBasics');
     event.target.style.color = 'red';
+    countBasicsSauce++
+    console.log(countBasicsSauce);
+    
     addToOrder(event.target);
+
 }
 
 function handleMeatIngredient(event) {
@@ -45,6 +54,7 @@ function handleMeatIngredient(event) {
     event.target.classList.add('choseMeat');
     event.target.style.color = 'red';
     addToOrder(event.target);
+    countMeatIngredients+0.6
 }
 
 function handleNonMeatIngredient(event) {
@@ -59,7 +69,7 @@ function handleNonMeatIngredient(event) {
     event.target.classList.add('choseNonMeat');
     event.target.style.color = 'red';
     addToOrder(event.target);
-
+    countNonMeatIngredients+0.6
     
 }
 
@@ -75,6 +85,7 @@ function handleSauceIngredient(event) {
     event.target.classList.add('choseSauce');
     event.target.style.color = 'red';
     addToOrder(event.target);
+    countBasicsSauce++
 }
 
 function addToOrder(ingredientElement) {
@@ -133,12 +144,7 @@ function removeFromOrder(event){
 }
 
 
-// ------------------------------------   Goose Code
-
-// ---Логика отображения пиццы---
-let countBasicsSauce = 2;
-let countMeatIngredients = 0.6;
-let countNonMeatIngredients = 0.6;
+// ------------------------------------   Goose Code  ----------------------------
 
 const test1 = document.getElementsByClassName('box1')[0];
 const test2 = document.getElementsByClassName('box2')[0];
@@ -276,28 +282,28 @@ function calcTotalPrice () {
 }
 
 // ---Создание сообщения о составе пиццы и её цены---
-const finalWindowWrapper = document.querySelector('.endMessageWrapper');
-const finalWindow = document.createElement('div');
-finalWindow.classList.add('endWindow');
-finalWindowWrapper.appendChild(finalWindow);
+// const finalWindowWrapper = document.querySelector('.endMessageWrapper');
+// const finalWindow = document.createElement('div');
+// finalWindow.classList.add('endWindow');
+// finalWindowWrapper.append(finalWindow);
 
-const finalMessage = document.createElement('span');
-finalMessage.textContent = 'Заказ успешно оформлен';
-finalWindow.append(finalMessage);
+// const finalMessage = document.createElement('span');
+// finalMessage.textContent = 'Заказ успешно оформлен';
+// finalWindow.append(finalMessage);
 
-createCloseButton();
+// createCloseButton();
 
 // ---Кнопка закрытия сообщения---
-function createCloseButton() {
-    const closeBtn = document.createElement('button');
-    closeBtn.innerHTML = '&times;';
-    closeBtn.classList.add('close-btn');
-    closeBtn.addEventListener('click', closeWindow);
-    finalWindow.prepend(closeBtn);
-}
+// function createCloseButton() {
+//     const closeBtn = document.createElement('button');
+//     closeBtn.innerHTML = '&times;';
+//     closeBtn.classList.add('close-btn');
+//     closeBtn.addEventListener('click', closeWindow);
+//     finalWindow.prepend(closeBtn);
+// }
 
-function closeWindow() {
-    const wrapper = document.querySelector('.endMessageWrapper');
-    wrapper.style.backgroundColor = 'transparent';
-    document.querySelector('.endWindow').remove();
-}
+// function closeWindow() {
+//     const wrapper = document.querySelector('.endMessageWrapper');
+//     wrapper.style.backgroundColor = 'transparent';
+//     document.querySelector('.endWindow').remove();
+// }
