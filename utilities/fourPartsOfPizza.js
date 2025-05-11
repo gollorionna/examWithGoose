@@ -76,23 +76,23 @@ const pizzaComposition = {
     sauce: null,
 };
 // ---Внесение продуктов в итоговый список---
-function selectProduct(category, productName) {
+function selectProduct(categoryName, productName) {
     const categories = ['dough', 'meat', 'toppings', 'sauce'];
-    const categoryIndex = categories.indexOf(category);
+    const categoryIndex = categories.indexOf(categoryName);
     
     const price = product[categoryIndex][productName];
     
-    switch (category) {
+    switch (categoryName) {
         case 'dough':
         case 'sauce':
-            pizzaComposition[category] = { name: productName, price: price };
+            pizzaComposition[categoryName] = { name: productName, price: price };
         break;
 
         case 'meat':
         case 'toppings':
-            const selectedItems = pizzaComposition[category];
+            const selectedItems = pizzaComposition[categoryName];
             if (selectedItems.length >= 2) {
-                console.error(`Можно выбрать не более 2-х вариантов в категории "${category}"!`);
+                console.error(`Можно выбрать не более 2-х вариантов в категории "${categoryName}"!`);
                 return false;
             }
             selectedItems.push({ name: productName, price: price });
