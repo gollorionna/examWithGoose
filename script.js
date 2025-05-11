@@ -1,34 +1,5 @@
 // prepod fix
-function changeMainCount ( ) {
-    return countBasicsSauce + Math.round(countMeatIngredients) + Math.round(countNonMeatIngredients);
-}
 
-function countPizzaImgAmount(countMain) {
-    switch (countMain) {
-        case 1:
-        test1.classList.add('activePizza'); 
-        break;
-    
-        case 2:
-        test1.classList.add('activePizza'); 
-        test2.classList.add('activePizza'); 
-        break;
-    
-        case 3:
-        test1.classList.add('activePizza'); 
-        test2.classList.add('activePizza'); 
-        test3.classList.add('activePizza'); 
-        break;
-    
-        case 4:
-        test1.classList.add('activePizza'); 
-        test2.classList.add('activePizza');
-        test3.classList.add('activePizza');
-        test4.classList.add('activePizza');
-        pizzaBuyClick()
-        break;
-    }
-}
 
 function handleBasicIngredient(event) {
     if (!event.target.classList.contains('ing')) return;
@@ -116,6 +87,8 @@ function handleSauceIngredient(event) {
 
 
 // ---Логика отображения пиццы---
+
+// -------------------  BLOCK  (getElements)
 const ingredients = document.getElementsByClassName('ing');
 const footerWrapper = document.getElementById('footerWrapper');
 const column_1 = document.getElementById('column_1');
@@ -123,42 +96,57 @@ const column_2 = document.getElementById('column_2');
 const column_3 = document.getElementById('column_3');
 const column_4 = document.getElementById('column_4');
 const ingWrapper = document.getElementById('ingredientBlock');
+// ---------------------   END
+
+
+
+// --------------------- BLOCK HOS  
 let countBasicsSauce = 0;
 let countMeatIngredients = 0;
 let countNonMeatIngredients = 0;
-let countMain = countBasicsSauce + Math.round(countMeatIngredients) + Math.round(countNonMeatIngredients);
-switch (countMain) {
-    case 1:
-    test1.classList.add('activePizza'); 
-    break;
-
-    case 2:
-    test1.classList.add('activePizza'); 
-    test2.classList.add('activePizza'); 
-    break;
-
-    case 3:
-    test1.classList.add('activePizza'); 
-    test2.classList.add('activePizza'); 
-    test3.classList.add('activePizza'); 
-    break;
-
-    case 4:
-    test1.classList.add('activePizza'); 
-    test2.classList.add('activePizza'); 
-    test3.classList.add('activePizza'); 
-    test4.classList.add('activePizza');
-    pizzaBuyClick()
-    break;
+function changeMainCount ( ) {
+    return countBasicsSauce + Math.round(countMeatIngredients) + Math.round(countNonMeatIngredients);
 }
+function countPizzaImgAmount(countMain) {
+    switch (countMain) {
+        case 1:
+        test1.classList.add('activePizza'); 
+        break;
+    
+        case 2:
+        test1.classList.add('activePizza'); 
+        test2.classList.add('activePizza'); 
+        break;
+    
+        case 3:
+        test1.classList.add('activePizza'); 
+        test2.classList.add('activePizza'); 
+        test3.classList.add('activePizza'); 
+        break;
+    
+        case 4:
+        test1.classList.add('activePizza'); 
+        test2.classList.add('activePizza');
+        test3.classList.add('activePizza');
+        test4.classList.add('activePizza');
+        pizzaBuyClick()
+        break;
+    }
+}
+// --------------------------- End
 
+
+// --------------------------  BLOCK limits
 const LIMITS = {
     basics: 1,
     meats: 2,
     nonMeats: 2,
-    sauces: 1
+    sauce: 1
 };
+// --------------------------  End
 
+
+// --------------------------  BLOCK column.addEventListener
 column_1.addEventListener('click', handleBasicIngredient);
 column_2.addEventListener('click', handleMeatIngredient);
 column_3.addEventListener('click', handleNonMeatIngredient);
@@ -177,10 +165,8 @@ function handleBasicIngredient(event) {
     event.target.classList.add('choseBasics');
     event.target.style.color = 'red';
     countBasicsSauce++
-    console.log(countMain);
-    
     addToOrder(event.target);
-
+    countPizzaImgAmount(changeMainCount());
 }
 
 function handleMeatIngredient(event) {
@@ -195,8 +181,8 @@ function handleMeatIngredient(event) {
     event.target.classList.add('choseMeat');
     event.target.style.color = 'red';
     addToOrder(event.target);
-    countMeatIngredients+0.6
-    console.log(countMain);
+    countMeatIngredients+=0.6
+    countPizzaImgAmount(changeMainCount());
 }
 
 function handleNonMeatIngredient(event) {
@@ -211,8 +197,8 @@ function handleNonMeatIngredient(event) {
     event.target.classList.add('choseNonMeat');
     event.target.style.color = 'red';
     addToOrder(event.target);
-    countNonMeatIngredients+0.6
-    console.log(countMain);
+    countNonMeatIngredients+=0.6
+    countPizzaImgAmount(changeMainCount());
 }
 
 function handleSauceIngredient(event) {
@@ -228,9 +214,12 @@ function handleSauceIngredient(event) {
     event.target.style.color = 'red';
     addToOrder(event.target);
     countBasicsSauce++
-    console.log(countMain);
+    countPizzaImgAmount(changeMainCount());
 }
+// -----------------------  END
 
+
+// ------------------------------  BLOCK  addToOrder()
 function addToOrder(ingredientElement) {
     let add_ingredient = ingredientElement;
     let name_order = add_ingredient.textContent;
@@ -248,7 +237,7 @@ function addToOrder(ingredientElement) {
         category = 'nonMeats';
     }
     else if (add_ingredient.classList.contains('choseSauce')) {
-        category = 'sauces';
+        category = 'sauce';
     }
 
     // Проверяем лимит для категории
@@ -264,21 +253,38 @@ function addToOrder(ingredientElement) {
         <button class="btn_remove">X</button>
     `;
     ingWrapper.appendChild(new_ingredient);
-
+    pizzaComposition[category] = {ingredientElement};
+    console.log(pizzaComposition);
+    
     new_ingredient.querySelector('.btn_remove').addEventListener('click', removeFromOrder)
 }
+// ---------------------  END
 
+
+// ----------------------   BLOCK  removeFromOrder()
 function removeFromOrder(event){
 
     const btn_remove = event.target; // Кнопка удаления
     const btn_remove_parent = btn_remove.parentElement; // Родительский элемент (ингредиент в заказе)
     const name_order = btn_remove_parent.querySelector('.name').textContent;
-
+    
     const allIngredients = document.querySelectorAll('.ing');
+    const allBasicsIngredients = document.getElementsByClassName('basics');
+    const allMeatsIngredients = document.getElementsByClassName('meats');
+    const allNonMeatsIngredients = document.getElementsByClassName('nonMeats');
+    const allSauceIngredients = document.getElementsByClassName('sauce');
+    
+    
     allIngredients.forEach(ing => {
-        if (ing.textContent === name_order & event.target.category === pizzaComposition.key) {
+        if (ing.textContent === name_order) {
+            
+            if(allBasicsIngredients)pizzaComposition.basics = null;
+            if(allMeatsIngredients)pizzaComposition.meats = [];
+            if(allNonMeatsIngredients)pizzaComposition.nonMeats = [];
+            if(allSauceIngredients)pizzaComposition.sauce = null;
+            
             ing.classList.remove('choseBasics', 'choseMeat', 'choseNonMeat', 'choseSauce');
-            pizzaComposition.key = null;
+            
             console.log(pizzaComposition);
             
             ing.style.color = 'black';
@@ -286,8 +292,8 @@ function removeFromOrder(event){
     });
     btn_remove_parent.remove();
 
-    // grandTotal();
 }
+// ----------------------------  END
 
 
 // ------------------------------------   Goose Code  ----------------------------
@@ -334,28 +340,28 @@ const product = [
     }];
 // ---Итоговый набор продуктов---
 const pizzaComposition = {
-    dough: null,
-    meat: [],
-    toppings: [],
+    basics: null,
+    meats: [],
+    nonMeats: [],
     sauce: null,
 };
 // ---Внесение продуктов в итоговый список---
 function selectProduct(categoryName, productName) {
-    const categories = ['dough', 'meat', 'toppings', 'sauce'];
+    const categories = ['basics', 'meats', 'nonMeats', 'sauce'];
     const categoryIndex = categories.indexOf(categoryName);
     
     const price = product[categoryIndex][productName];
     
     switch (categoryName) {
-        case 'dough':
+        case 'basics':
         case 'sauce':
             pizzaComposition[categoryName] = { name: productName, price: price };
             console.log(pizzaComposition);
             
         break;
 
-        case 'meat':
-        case 'toppings':
+        case 'meats':
+        case 'nonMeats':
             const selectedItems = pizzaComposition[categoryName];
             if (selectedItems.length >= 2) {
                 console.error(`Можно выбрать не более 2-х вариантов в категории "${categoryName}"!`);
@@ -404,6 +410,8 @@ function calcTotalPrice () {
     return sumPrice
 }
 
+const priceOnWimdow = document.querySelector('.totalPrice');
+priceOnWimdow.textContent = calcTotalPrice();
 // ---Создание сообщения о составе пиццы и её цены---
 // const finalWindowWrapper = document.querySelector('.endMessageWrapper');
 // const finalWindow = document.createElement('div');
