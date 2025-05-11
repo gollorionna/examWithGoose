@@ -139,9 +139,10 @@ function calcTotalPrice () {
 }
 
 // ---Создание сообщения о составе пиццы и её цены---
+const finalWindowWrapper = document.querySelector('.endMessageWrapper');
 const finalWindow = document.createElement('div');
 finalWindow.classList.add('endWindow');
-const finalWindowWrapper = document.querySelector('.endMessageWrapper').append(finalWindow);
+finalWindowWrapper.appendChild(finalWindow);
 
 const finalMessage = document.createElement('span');
 finalMessage.textContent = 'Заказ успешно оформлен';
@@ -152,15 +153,16 @@ createCloseButton();
 // ---Кнопка закрытия сообщения---
 function createCloseButton() {
     const closeBtn = document.createElement('button');
-    closeBtn.innerHTML = '&times;'; 
-    closeBtn.classList.add('close-btn'); 
+    closeBtn.innerHTML = '&times;';
+    closeBtn.classList.add('close-btn');
     closeBtn.addEventListener('click', closeWindow);
     finalWindow.prepend(closeBtn);
 }
 
 function closeWindow() {
-    document.querySelector('.endWindow').remove('.endWindow');
-    finalWindowWrapper.style.backgroundColor = 'none'; 
+    const wrapper = document.querySelector('.endMessageWrapper');
+    wrapper.style.backgroundColor = 'transparent';
+    document.querySelector('.endWindow').remove();
 }
 
 
