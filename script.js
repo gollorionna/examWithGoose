@@ -20,8 +20,9 @@ const LIMITS = {
     basics: 1,
     meats: 2,
     nonMeats: 2,
-    sauces: 1
+    sauce: 1
 };
+// --------------------------  End
 
 const product = [
     {
@@ -48,9 +49,9 @@ const product = [
 ];
 
 const pizzaComposition = {
-    dough: null,
-    meat: [],
-    toppings: [],
+    basics: null,
+    meats: [],
+    nonMeats: [],
     sauce: null,
 };
 
@@ -261,19 +262,19 @@ function removeFromOrder(event) {
 }
 
 function selectProduct(categoryName, productName) {
-    const categories = ['dough', 'meat', 'toppings', 'sauce'];
+    const categories = ['basics', 'meats', 'nonMeats', 'sauce'];
     const categoryIndex = categories.indexOf(categoryName);
     
     const price = product[categoryIndex][productName];
     
     switch (categoryName) {
-        case 'dough':
+        case 'basics':
         case 'sauce':
             pizzaComposition[categoryName] = { name: productName, price: price };
             break;
 
-        case 'meat':
-        case 'toppings':
+        case 'meats':
+        case 'nonMeats':
             const selectedItems = pizzaComposition[categoryName];
             if (selectedItems.length >= 2) {
                 console.error(`Можно выбрать не более 2-х вариантов в категории "${categoryName}"!`);
